@@ -16,17 +16,21 @@ def main():
 
     # url = f'https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid={API_KEY}&freeword=ワイン'
 
-    payload = {'keyid': API_KEY, 'freeword': 'ワイン'}
+    payload = {'keyid': API_KEY, 'freeword': 'ワイン', 'hit_per_page': 5}
     response = requests.get("https://api.gnavi.co.jp/RestSearchAPI/v3", params=payload)
 
     # response = requests.get(url)
 
-    reply_name = response.json()['rest'][0]['name']
-    reply_url = response.json()['rest'][0]['url']
-    reply_linename = response.json()['rest'][0]['access']['line']
-    reply_station = response.json()['rest'][0]['access']['station']
+    restaurant_list = response.json()['rest']
 
-    print(f'{reply_name}\n{reply_url}\n{reply_linename}\n{reply_station}')
+    for restaurant in restaurant_list:
+        reply_name = restaurant['name']
+        reply_url = restaurant['url']
+        reply_access_line = restaurant['access']['line']
+        reply_access_station = restaurant['access']['station']
+
+        print("===================================")
+        print(f'{reply_name}\n{reply_url}\n{reply_access_line}\n{reply_access_station}')
 
 
 if __name__ == '__main__':
