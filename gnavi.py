@@ -30,7 +30,7 @@ def main():
         reply_access_station = restaurant['access']['station']
 
         print("===================================")
-        print(f'{reply_name}\n{reply_url}\n{reply_access_line}\n{reply_access_station}')
+        print(f'{reply_name},{reply_url},{reply_access_line},{reply_access_station}')
 
 
 if __name__ == '__main__':
